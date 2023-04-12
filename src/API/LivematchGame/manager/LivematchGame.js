@@ -1,40 +1,19 @@
 "use strict"
-const path = require('path')
-const fs = require('fs')
+const { returnError } = require('../../../Util/error')
+const RabbitMQ = require('../../../ThirdParty/RabbitMQ/publish')
+require('dotenv').config()
 
-class LivematchGame {
-  async insert(req, res) {
+class PrematchGame {
+  insert(req, res) {
     try {
-      // const data = req.body
-      const data = {
-        a:'x'
-      }
-      const dataFolder = path.join(__dirname, "./data")
-
-      if (!fs.existsSync(dataFolder)) {
-        fs.mkdirSync(dataFolder)
-      }
-
-      const fileName = `${Date.now()}.json`
-
-      fs.writeFile(
-        path.join(dataFolder, fileName),
-        JSON.stringify(data),
-        (err) => {
-          if (err) {
-            console.error(err)
-            res.json(500).status("failed")
-          } else {
-            console.info(`save success: ${fileName}`)
-            res.status(200).send("success")
-          }
-        }
-      )
+      conso
+      return
+      console.log(req.body)
+      return res.status(200).json({success: true})
     } catch (e) {
-      console.error(e)
-      res.json(500).status("failed")
+      return returnError(res, 'liveMatch' ,req.originalUrl, 500 , e.message)
     }
   }
 }
 
-module.exports = new LivematchGame
+module.exports = new PrematchGame

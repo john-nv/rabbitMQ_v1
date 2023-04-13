@@ -6,9 +6,6 @@ require('dotenv').config()
 class PrematchGame {
   insert(req, res) {
     try {
-      conso
-      return
-      console.log(req.body)
       return res.status(200).json({success: true})
     } catch (e) {
       return returnError(res, 'liveMatch' ,req.originalUrl, 500 , e.message)
